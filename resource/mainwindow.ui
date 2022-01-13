@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>976</width>
+    <height>614</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>30</y>
+      <width>681</width>
+      <height>441</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>679</width>
+       <height>439</height>
+      </rect>
+     </property>
+     <widget class="QLabel" name="label_Map_image">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>681</width>
+        <height>441</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QListWidget" name="List_points">
+    <property name="geometry">
+     <rect>
+      <x>740</x>
+      <y>30</y>
+      <width>191</width>
+      <height>441</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Button_Start">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>500</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>976</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen_landmarks"/>
+    <addaction name="actionSave_landmarks"/>
+   </widget>
+   <widget class="QMenu" name="menuLandmarks">
+    <property name="title">
+     <string>Landmarks</string>
+    </property>
+    <addaction name="actionAdd_Landmark"/>
+    <addaction name="actionDelete_Landmark"/>
+   </widget>
+   <widget class="QMenu" name="menuWheelchair">
+    <property name="title">
+     <string>Wheelchair</string>
+    </property>
+    <addaction name="actionSet_wheelchair_pose"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuLandmarks"/>
+   <addaction name="menuWheelchair"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionAdd_Landmark">
+   <property name="text">
+    <string>Add Landmark</string>
+   </property>
+  </action>
+  <action name="actionDelete_Landmark">
+   <property name="text">
+    <string>Delete Landmark</string>
+   </property>
+  </action>
+  <action name="actionOpen_landmarks">
+   <property name="text">
+    <string>Open landmarks</string>
+   </property>
+  </action>
+  <action name="actionSave_landmarks">
+   <property name="text">
+    <string>Save landmarks</string>
+   </property>
+  </action>
+  <action name="actionSet_wheelchair_pose">
+   <property name="text">
+    <string>Set wheelchair pose</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
