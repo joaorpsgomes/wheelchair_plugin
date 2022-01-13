@@ -1,14 +1,20 @@
+import imp
 import os
 import rospy
 import rospkg
+from geometry_msgs.msg import PoseStamped
+from std_msgs.msg import String
 
 from qt_gui.plugin import Plugin
 from python_qt_binding import loadUi
 from python_qt_binding.QtWidgets import QWidget
 
+pub = None
+
 class MyPlugin(Plugin):
 
     def __init__(self, context):
+        global pub
         super(MyPlugin, self).__init__(context)
         # Give QObjects reasonable names
         self.setObjectName('MyPlugin')
@@ -42,6 +48,15 @@ class MyPlugin(Plugin):
             self._widget.setWindowTitle(self._widget.windowTitle() + (' (%d)' % context.serial_number()))
         # Add widget to the user interface
         context.add_widget(self._widget)
+        self._widget.Button_Start.clicked.connect(self.buttonClicked)
+        pub = rospy.Publisher("/move_base_simple/goal", PoseStamped, queue_size=10)
+	
+    def buttonClicked(self):
+        global pub
+        #sender = self.sender()
+        #rospy.logwarn(sender.text() + " was pressed")
+        a = PoseStamped()
+        pub.publish(a)
 
     def shutdown_plugin(self):
         # TODO unregister all publishers here
