@@ -1,7 +1,7 @@
-<library path="src">
-  <class name="My Plugin" type="wheelchair_plugin.my_module.MyPlugin" base_class_type="rqt_gui_py::Plugin">
+<library path="lib/libwheelchair_plugin">
+  <class name="wheelchair_plugin/MyPlugin" type="wheelchair_plugin::MyPlugin" base_class_type="rqt_gui_cpp::Plugin">
     <description>
-      An example Python GUI plugin to create a great user interface.
+      An example C++ GUI plugin to create a great user interface.
     </description>
     <qtgui>
       <!-- optional grouping...
@@ -12,7 +12,7 @@
         <label>Subgroup</label>
       </group>
       -->
-      <label>Wheelchair GUI</label>
+      <label>My first C++ Plugin</label>
       <icon type="theme">system-help</icon>
       <statustip>Great user interface to provide real value.</statustip>
     </qtgui>
