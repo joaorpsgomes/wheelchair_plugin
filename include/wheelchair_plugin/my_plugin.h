@@ -7,6 +7,10 @@
 #include <rqt_gui_cpp/plugin.h>
 #include <wheelchair_plugin/ui_mainwindow.h>
 #include <QWidget>
+#include "ros/ros.h"
+#include "geometry_msgs/PoseStamped.h"
+
+
 
 namespace wheelchair_plugin
 {
@@ -30,6 +34,13 @@ public:
 private:
   Ui::MainWindow ui_;
   QWidget* widget_;
+  ros::NodeHandle nh;
+  ros::Publisher camera_info_pub;
+
+private slots:
+  void on_Button_Start_clicked();
+
 };
-}  // namespace wheelchair_plugin
+} 
+ // namespace wheelchair_plugin
 #endif  // WHEELCHAIR_PLUGIN_MY_PLUGIN_H
