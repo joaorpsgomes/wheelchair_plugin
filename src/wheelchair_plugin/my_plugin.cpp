@@ -6,7 +6,7 @@
 #include <pluginlib/class_list_macros.h>
 #include <QStringList>
 
-
+Ui::MainWindow ui_;
 
 namespace wheelchair_plugin
 {
@@ -41,13 +41,15 @@ void MyPlugin::initPlugin(qt_gui_cpp::PluginContext& context)
 
 
   /////// Subscribers //////
-  sub = nh.subscribe("map", 1000, map_callback);
+  sub = nh.subscribe("map", 1000, &MyPlugin::map_callback, this);
   //////////////////////////
 
 
   /////// Event handlers ///////
   connect(ui_.Button_Start, SIGNAL(clicked()), this, SLOT(on_Button_Start_clicked()));
   //////////////////////////////
+
+  ui_.Button_Start->setText("Hello");
 
 }
 
@@ -112,6 +114,35 @@ void MyPlugin::on_Button_Start_clicked()
 }
 
 
+void MyPlugin::map_callback(const nav_msgs::OccupancyGrid::ConstPtr& msg)
+{
+  int width=msg->info.width;
+    int lenght=msg->info.width*msg->info.height;
+    
+    QImage image( msg->info.width, msg->info.height,QImage::Format_RGB32);
+    for ( int i = 0; i < lenght; ++i )
+    {
+        
+        QRgb grey  = 0xFFA0A0A0;
+        QRgb black = 0xFF000000; 
+        QRgb white = 0xFFFFFFFF; 
+        if(msg->data[i]==-1){
+            image.setPixel( i%width, i/width, grey );
+        }           
+        else if(msg->data[i]==100){
+            image.setPixel( i%width, i/width, black );
+        }
+        else{
+            image.setPixel( i%width, i/width, white );
+        }
+        ROS_INFO("%d ",msg->data[i]);
+
+    }
+    QImage img2 = image.scaled(681, 441, Qt::KeepAspectRatio);    
+    ui_.label_Map_image->setPixmap(QPixmap::fromImage(img2));
+}
+
+
 
 
 
@@ -119,7 +150,3 @@ void MyPlugin::on_Button_Start_clicked()
 PLUGINLIB_EXPORT_CLASS(wheelchair_plugin::MyPlugin, rqt_gui_cpp::Plugin)
 
 
-void map_callback(const nav_msgs::OccupancyGrid::ConstPtr& msg)
-{
-  ROS_INFO("I heard: []");
-}

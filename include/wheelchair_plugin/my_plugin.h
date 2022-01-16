@@ -29,6 +29,9 @@ public:
   virtual void restoreSettings(const qt_gui_cpp::Settings& plugin_settings,
       const qt_gui_cpp::Settings& instance_settings);
 
+
+
+  void map_callback(const nav_msgs::OccupancyGrid::ConstPtr& msg);
   // Comment in to signal that the plugin has a way to configure it
   // bool hasConfiguration() const;
   // void triggerConfiguration();
@@ -38,6 +41,7 @@ private:
   ros::NodeHandle nh;
   ros::Publisher goal_pub;
   ros::Subscriber sub;
+  
 
 private slots:
   void on_Button_Start_clicked();
@@ -45,6 +49,6 @@ private slots:
 };
 } 
 
-void map_callback(const nav_msgs::OccupancyGrid::ConstPtr& msg);
+
  // namespace wheelchair_plugin
 #endif  // WHEELCHAIR_PLUGIN_MY_PLUGIN_H
