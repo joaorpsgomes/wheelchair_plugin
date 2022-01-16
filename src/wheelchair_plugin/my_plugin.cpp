@@ -33,10 +33,21 @@ void MyPlugin::initPlugin(qt_gui_cpp::PluginContext& context)
   // add widget to the user interface
   context.addWidget(widget_);
   
-  ros::NodeHandle nh = getNodeHandle();
-  camera_info_pub = getNodeHandle().advertise<geometry_msgs::PoseStamped>("goal", 5);
-  connect(ui_.Button_Start, SIGNAL(clicked()), this, SLOT(on_Button_Start_clicked()));
 
+  /////// Publishers ////////
+  ros::NodeHandle nh = getNodeHandle();
+  goal_pub = getNodeHandle().advertise<geometry_msgs::PoseStamped>("goal", 5);
+  //////////////////////////
+
+
+  /////// Subscribers //////
+  sub = nh.subscribe("map", 1000, map_callback);
+  //////////////////////////
+
+
+  /////// Event handlers ///////
+  connect(ui_.Button_Start, SIGNAL(clicked()), this, SLOT(on_Button_Start_clicked()));
+  //////////////////////////////
 
 }
 
@@ -79,11 +90,11 @@ void MyPlugin::on_Button_Start_clicked()
     ////////////////
 
 
-    ////// position ////
+    ////// position ////sg)
     goal.pose.position.x=0;
     goal.pose.position.y=0;
     goal.pose.position.z=0;
-    ////////////////
+    ////////////////////
 
 
     ////// orientation /////
@@ -91,14 +102,10 @@ void MyPlugin::on_Button_Start_clicked()
     goal.pose.orientation.y=0;
     goal.pose.orientation.z=0;
     goal.pose.orientation.w=1;
-    //////
-
-
-
-
+    ////////////////////////
 
     
-    camera_info_pub.publish(goal);
+    goal_pub.publish(goal);
 
     ros::spinOnce();
     count++;
@@ -110,3 +117,9 @@ void MyPlugin::on_Button_Start_clicked()
 
 }  // namespace wheelchair_plugin
 PLUGINLIB_EXPORT_CLASS(wheelchair_plugin::MyPlugin, rqt_gui_cpp::Plugin)
+
+
+void map_callback(const nav_msgs::OccupancyGrid::ConstPtr& msg)
+{
+  ROS_INFO("I heard: []");
+}

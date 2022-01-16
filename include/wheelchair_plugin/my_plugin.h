@@ -9,6 +9,7 @@
 #include <QWidget>
 #include "ros/ros.h"
 #include "geometry_msgs/PoseStamped.h"
+#include "nav_msgs/OccupancyGrid.h"
 
 
 
@@ -35,12 +36,15 @@ private:
   Ui::MainWindow ui_;
   QWidget* widget_;
   ros::NodeHandle nh;
-  ros::Publisher camera_info_pub;
+  ros::Publisher goal_pub;
+  ros::Subscriber sub;
 
 private slots:
   void on_Button_Start_clicked();
 
 };
 } 
+
+void map_callback(const nav_msgs::OccupancyGrid::ConstPtr& msg);
  // namespace wheelchair_plugin
 #endif  // WHEELCHAIR_PLUGIN_MY_PLUGIN_H
