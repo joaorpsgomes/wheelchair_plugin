@@ -1,0 +1,5 @@
+<!-- Launch file for GUI -->
+
+<launch>
+  <node pkg="rqt_gui" type="rqt_gui" name="wheelchair_gui" args="-s wheelchair_plugin/MyPlugin" />
+</launch>
