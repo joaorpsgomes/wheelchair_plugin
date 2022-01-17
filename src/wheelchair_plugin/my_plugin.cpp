@@ -49,7 +49,7 @@ void MyPlugin::initPlugin(qt_gui_cpp::PluginContext& context)
   connect(ui_.Button_Start, SIGNAL(clicked()), this, SLOT(on_Button_Start_clicked()));
   //////////////////////////////
 
-  ui_.Button_Start->setText("Hello");
+  //ui_.Button_Start->setText("Hello");
 
 }
 
@@ -117,29 +117,29 @@ void MyPlugin::on_Button_Start_clicked()
 void MyPlugin::map_callback(const nav_msgs::OccupancyGrid::ConstPtr& msg)
 {
   int width=msg->info.width;
-    int lenght=msg->info.width*msg->info.height;
-    
-    QImage image( msg->info.width, msg->info.height,QImage::Format_RGB32);
-    for ( int i = 0; i < lenght; ++i )
-    {
-        
-        QRgb grey  = 0xFFA0A0A0;
-        QRgb black = 0xFF000000; 
-        QRgb white = 0xFFFFFFFF; 
-        if(msg->data[i]==-1){
-            image.setPixel( i%width, i/width, grey );
-        }           
-        else if(msg->data[i]==100){
-            image.setPixel( i%width, i/width, black );
-        }
-        else{
-            image.setPixel( i%width, i/width, white );
-        }
-        ROS_INFO("%d ",msg->data[i]);
+  int lenght=msg->info.width*msg->info.height;
+  
+  QImage image( msg->info.width, msg->info.height,QImage::Format_RGB32);
+  for ( int i = 0; i < lenght; ++i )
+  {
+      
+      QRgb grey  = 0xFFA0A0A0;
+      QRgb black = 0xFF000000; 
+      QRgb white = 0xFFFFFFFF; 
+      if(msg->data[i]==-1){
+          image.setPixel( i%width, i/width, grey );
+      }           
+      else if(msg->data[i]==100){
+          image.setPixel( i%width, i/width, black );
+      }
+      else{
+          image.setPixel( i%width, i/width, white );
+      }
 
-    }
-    QImage img2 = image.scaled(681, 441, Qt::KeepAspectRatio);    
-    ui_.label_Map_image->setPixmap(QPixmap::fromImage(img2));
+
+  }
+  QImage img2 = image.scaled(681, 441, Qt::KeepAspectRatio);    
+  ui_.label_Map_image->setPixmap(QPixmap::fromImage(img2));
 }
 
 
