@@ -32,7 +32,7 @@ void MyPlugin::initPlugin(qt_gui_cpp::PluginContext& context)
   ui_.setupUi(widget_);
   // add widget to the user interface
   context.addWidget(widget_);
-  
+  ui_.label_Map_image->setFixedSize(ui_.label_Map_image->sizeHint());
 
   /////// Publishers ////////
   ros::NodeHandle nh = getNodeHandle();
