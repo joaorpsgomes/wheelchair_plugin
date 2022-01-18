@@ -109,6 +109,10 @@ void MyPlugin::on_Button_Start_clicked()
     
     goal_pub.publish(goal);
 
+	QListWidgetItem* item = new QListWidgetItem;
+	item->setText("Hello");
+	ui_.List_points->insertItem(count, item);
+
     ros::spinOnce();
     count++;
 }
