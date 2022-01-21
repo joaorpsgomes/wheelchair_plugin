@@ -29,7 +29,8 @@ public:
   virtual void restoreSettings(const qt_gui_cpp::Settings& plugin_settings,
       const qt_gui_cpp::Settings& instance_settings);
 
-
+  bool itemSelected;
+  geometry_msgs::PoseStamped goal_to_send;
 
   void map_callback(const nav_msgs::OccupancyGrid::ConstPtr& msg);
   // Comment in to signal that the plugin has a way to configure it
@@ -45,7 +46,7 @@ private:
 
 private slots:
   void on_Button_Start_clicked();
-
+  void on_List_points_itemClicked(QListWidgetItem *item);
 };
 } 
 
