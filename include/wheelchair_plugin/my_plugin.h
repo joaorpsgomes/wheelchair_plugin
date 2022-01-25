@@ -10,6 +10,9 @@
 #include "ros/ros.h"
 #include "geometry_msgs/PoseStamped.h"
 #include "nav_msgs/OccupancyGrid.h"
+#include <QMenuBar>
+#include <QUrl>
+#include <QDesktopServices>
 
 
 
@@ -45,6 +48,7 @@ private:
 
 private slots:
   void on_Button_Start_clicked();
+  void menu_File_Save_clicked();
 
 };
 } 

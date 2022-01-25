@@ -47,6 +47,8 @@ void MyPlugin::initPlugin(qt_gui_cpp::PluginContext& context)
 
   /////// Event handlers ///////
   connect(ui_.Button_Start, SIGNAL(clicked()), this, SLOT(on_Button_Start_clicked()));
+  connect(ui_.actionSave_Landmarks, SIGNAL(triggered()), this, SLOT(menu_File_Save_clicked()));
+  
   //////////////////////////////
 
   //ui_.Button_Start->setText("Hello");
@@ -143,7 +145,12 @@ void MyPlugin::map_callback(const nav_msgs::OccupancyGrid::ConstPtr& msg)
 }
 
 
-
+void MyPlugin::menu_File_Save_clicked()
+{
+  ui_.Button_Start->setText("Hello");
+  QString fileName;
+   QDesktopServices::openUrl(QUrl("/"));
+}
 
 
 }  // namespace wheelchair_plugin

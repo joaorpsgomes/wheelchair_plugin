@@ -38,7 +38,7 @@
       <property name="title">
        <string>File</string>
       </property>
-      <addaction name="actionsd"/>
+      <addaction name="actionSave_Landmarks"/>
       <addaction name="actionOpen_Landmarks"/>
      </widget>
      <widget class="QMenu" name="menuLandmarks">
@@ -159,7 +159,7 @@
     </rect>
    </property>
   </widget>
-  <action name="actionsd">
+  <action name="actionSave_Landmarks">
    <property name="text">
     <string>Save LandMarks</string>
    </property>
